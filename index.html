@@ -263,29 +263,33 @@ function pixelSet(video, y, x, r, g, b) {
   video[index+3+4] = 180;
 }
 function plotData(video, x, y, value, bit) {
-    var bt = (value >> bit) & 1;
-    y = y-bit;
-    var r = 0;
-    var g = 0;
-    var b = 0;
-    if (bt) {
-      // fake cellophane colors for different games since graphics are just white on black
-      if (y >= 184+8 && y <= 238 && x >= 0 && x <= 223)
-        g = 255;
-      else if (y >= 240 && y <= 247 && x >= 16 && x <= 133)
-        g = 255;
-      else if (y >= 33 && y <= 33+16) {
-        r = 255;
-        g = 0;
-        b = 0;
-      }
-      else {
-        g = 250;
-        b = 250;
-        r = 250;
-      } 
+  if (y < 0 || y >= 256 || x < 0 || x >= 224)
+  {
+    return;
+  }
+  var bt = (value >> bit) & 1;
+  y = y-bit;
+  var r = 0;
+  var g = 0;
+  var b = 0;
+  if (bt) {
+    // fake cellophane colors for different games since graphics are just white on black
+    if (y >= 184+8 && y <= 238 && x >= 0 && x <= 223)
+      g = 255;
+    else if (y >= 240 && y <= 247 && x >= 16 && x <= 133)
+      g = 255;
+    else if (y >= 33 && y <= 33+16) {
+      r = 255;
+      g = 0;
+      b = 0;
     }
-    pixelSet(video, y, x, r, g, b);
+    else {
+      g = 250;
+      b = 250;
+      r = 250;
+    } 
+  }
+  pixelSet(video, y, x, r, g, b);
 }
 function memoryUpdated(addr, value)
 {
