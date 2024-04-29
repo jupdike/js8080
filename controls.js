@@ -86,7 +86,7 @@ class Controls {
     _status() {
         this.controls.forEach((control) => {
             if(control.isDown) {
-                console.log('CURRENTLY DOWN:', control.str);
+                // console.log('CURRENTLY DOWN:', control.str);
             }
         });
     }
@@ -102,7 +102,7 @@ class Controls {
             let dist2 = dx * dx + dy * dy;
             let inside = dist2 < control.cr * control.cr;
             if(inside) {
-                console.log('DOWN INSIDE:', control.str);
+                // console.log('DOWN INSIDE:', control.str);
                 that._trackTouch(touch, control);
             }
         });
@@ -119,11 +119,11 @@ class Controls {
             let inside = dist2 < control.cr * control.cr;
             let changed = inside !== control.isDown;
             if(changed && control.isDown) {
-                console.log('CHANGED:', control.str);
+                // console.log('CHANGED:', control.str);
                 that._releaseTouch(touch, control);
             }
             else if(changed && !control.isDown) {
-                console.log('CHANGED:', control.str);
+                // console.log('CHANGED:', control.str);
                 that._trackTouch(touch, control);
             }
         });
@@ -139,7 +139,7 @@ class Controls {
             let dist2 = dx * dx + dy * dy;
             let inside = dist2 < control.cr * control.cr;
             if(inside) {
-                console.log('UP INSIDE:', control.str);
+                // console.log('UP INSIDE:', control.str);
                 that._releaseTouch(touch, control);
             }
         });

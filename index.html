@@ -25,7 +25,7 @@
     user-select: none;
     -webkit-touch-callout: none;     /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;  /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;       /* prevent copy paste, to allow, change 'none' to 'text' */}
+    -webkit-user-select: none;       /* prevent copy paste, to allow, change 'none' to 'text' */
   }
 
   canvas.fullscreen{
@@ -72,26 +72,14 @@
  <script type="text/javascript" src="tn05.js"></script>
  <script type="text/javascript" src="controls.js"></script>
  <script type="text/javascript">
-var audio = {};
-function enableAudio() {
-  audio.basehit = document.createElement('audio');
-  audio.shot = document.createElement('audio');
-  audio.ufohit = document.createElement('audio');
-  audio.invhit = document.createElement('audio');
-  audio.ufo = document.createElement('audio');
-  audio.walk1 = document.createElement('audio');
-  audio.walk2 = document.createElement('audio');
-  audio.walk3 = document.createElement('audio');
-  audio.walk4 = document.createElement('audio');
-  audio.basehit.src='sound/basehit.mp3';
-  audio.shot.src='sound/shot.mp3';
-  audio.ufohit.src='sound/ufohit.mp3';
-  audio.invhit.src='sound/invhit.mp3';
-  audio.ufo.src='sound/ufo.mp3';
-  audio.walk1.src='sound/walk1.mp3';
-  audio.walk2.src='sound/walk2.mp3';
-  audio.walk3.src='sound/walk3.mp3';
-  audio.walk4.src='sound/walk4.mp3';
+
+if ('ontouchstart' in window) {
+    // This means the browser supports touch events.
+    // TODO show touch controls
+} else {
+    // This specifies the browser does not support touch events.
+    // TODO hide touch controls
+    // TODO show information about which keys are which controls
 }
 
 function createImageData(w, h) {
