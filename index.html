@@ -18,11 +18,14 @@
     }  
 
   body {
-    /* height: 100%; */
+    margin: 0;
+    padding: 0;
     background-color: #122B53;
     touch-action: manipulation;
     user-select: none;
-    -webkit-user-select: none;
+    -webkit-touch-callout: none;     /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;  /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;       /* prevent copy paste, to allow, change 'none' to 'text' */}
   }
 
   canvas.fullscreen{
@@ -40,8 +43,13 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 74vmin;
-    height: 84vmin;
+    width: 100vmin;
+    height: 114vmin;
+  }
+
+  /* works, but we don't need it */
+  body, html {
+    position: fixed;
   }
 
  </style>
@@ -62,6 +70,7 @@
  <script type="text/javascript" src="tn03.js"></script>
  <script type="text/javascript" src="tn04.js"></script>
  <script type="text/javascript" src="tn05.js"></script>
+ <script type="text/javascript" src="controls.js"></script>
  <script type="text/javascript">
 var audio = {};
 function enableAudio() {
@@ -262,6 +271,26 @@ id="screen"
 width="448" 
 height="512">
 </canvas>
+<!-- <div id="controls" style="width: 74vmin; height: 12vmin; margin-left: auto; margin-right: auto;">
+<center>
+  <img id="btn-l" src="si-button.svg" style="width: 12vmin; height: 12vmin"/>
+  <img id="btn-r" src="si-button.svg" style="width: 12vmin; height: 12vmin"/>
+  <div style="display:inline;">
+    <img src="si-button.svg" style="width: 6vmin; height: 4vmin; opacity: 0.01"/>
+  </div>
+  <img id="btn-c" src="si-button.svg" style="width: 6min; height: 6vmin"/>
+  <img id="btn-1" src="si-button.svg" style="width: 6vmin; height: 6vmin"/>
+  <div style="display:inline;">
+    <img src="si-button.svg" style="width: 6vmin; height: 4vmin; opacity: 0.01"/>
+  </div>
+  <img id="btn-f" src="si-button.svg" style="width: 12vmin; height: 12vmin"/>
+</center>
+</div> -->
+
+<div id="controls" style="display: block; width: 100vmin; height: 62.5vmin; margin-left: auto; margin-right: auto;">
+  <div id="control-below-left" style="display: inline-block; background-image: url('majesty-controls-left.png'); background-size: contain; width: 50vmin; height: 62.5vmin; margin: 0; padding: 0"></div><!--no whitespace --><div id="control-below-right" style="display: inline-block; background-image: url('majesty-controls-right.png'); background-size: contain; width: 50vmin; height: 62.5vmin; margin: 0; padding: 0"></div>
+</div>
+
 <p id="status" style="display: none"></p>
 <script type="text/javascript">
 function pixelSet(video, y, x, r, g, b) {
@@ -672,6 +701,30 @@ document.getElementsByTagName('body')[0].addEventListener("contextmenu", (event)
   console.log('prevented default?');
   event.preventDefault();
 });
+
+// function addTouchEventListeners(id, down, up) {
+//   var el = document.getElementById(id);
+//   el.addEventListener("touchstart", down);
+//   el.addEventListener("touchend", up);
+//   el.addEventListener("touchcancel", up);
+// }
+// addTouchEventListeners('btn-l', downControl_Left, upControl_Left);
+// addTouchEventListeners('btn-r', downControl_Right, upControl_Right);
+// addTouchEventListeners('btn-c', downControl_Coin, upControl_Coin);
+// addTouchEventListeners('btn-1', downControl_1P, upControl_1P);
+// addTouchEventListeners('btn-f', downControl_Fire, upControl_Fire);
+
+let controlsLeft = new Controls('control-below-left');
+controlsLeft.addControl('C', 0.20, 0.15, 0.2, downControl_Coin, upControl_Coin);
+controlsLeft.addControl('L', 0.15, 0.50, 0.24, downControl_Left, upControl_Left);
+controlsLeft.addControl('R', 0.85, 0.50, 0.24, downControl_Right, upControl_Right);
+
+let controlsRight = new Controls('control-below-right');
+controlsRight.addControl('1', 0.85, 0.1, 0.2, downControl_1P, upControl_1P);
+controlsRight.addControl('F', 0.50, 0.5, 0.4, downControl_Fire, upControl_Fire);
+
+
+
 
 </script>
 </html>
