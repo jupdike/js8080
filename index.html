@@ -348,33 +348,134 @@ function interrupt(n) {
 }
 
 var cpu = {};
+
+function downControl_Coin() {
+  cpu.port1 |= 1;
+}
+function downControl_Left() {
+  cpu.port1 |= 0x20;
+}
+function downControl_Right() {
+  cpu.port1 |= 0x40;
+}
+function downControl_1P() {
+  cpu.port1 |= 4;
+}
+function downControl_2P() {
+  cpu.port1 |= 8; // ?
+}
+function downControl_Fire() {
+  cpu.port1 |= 0x10;
+}
+
+function upControl_Coin() {
+  cpu.port1 &= 255-1;
+}
+function upControl_Left() {
+  cpu.port1 &= 255-0x20;
+}
+function upControl_Right() {
+  cpu.port1 &= 255-0x40;
+}
+function upControl_1P() {
+  cpu.port1 &= 255-4;
+}
+function upControl_2P() {
+  cpu.port1 &= 255-8; // ?
+}
+function upControl_Fire() {
+  cpu.port1 &= 255-0x10;
+}
+
 si();
 document.addEventListener("keydown", function(e) {
   var evt = e || window.event;
-  if(evt.keyCode == 67)
-    cpu.port1 |= 1;
-  if(evt.keyCode == 49)
-    cpu.port1 |= 4;
-  if(evt.keyCode == 190)
-    cpu.port1 |= 0x10;
-  if(evt.keyCode == 90)
-    cpu.port1 |= 0x20;
-  if(evt.keyCode == 88)
-    cpu.port1 |= 0x40;
+  if(evt.keyCode == 67 || // c
+    evt.keyCode == 192 || // tilde or backtick `
+    evt.keyCode == 81 // q
+  ) {
+    downControl_Coin();
+  }
+  if(evt.keyCode == 49 // 1
+  ) {
+    downControl_1P();
+  }
+  if(evt.keyCode == 50 // 2
+  ) {
+    downControl_2P();
+  }
+  if(evt.keyCode == 190 || // . (period)
+    evt.keyCode == 32 || // space
+    evt.keyCode == 13 || // enter
+    evt.keyCode == 188 || // , (comma)
+    evt.keyCode == 191 || // / (slash)
+    evt.keyCode == 90 || // z
+    evt.keyCode == 88 // x
+  ) {
+    downControl_Fire();
+  }
+  if(evt.keyCode == 37 || // left arrow
+    evt.keyCode == 65 || // a
+    evt.keyCode == 74 // j
+  ) {
+    downControl_Left();
+  }
+  if(evt.keyCode == 39 || // right arrow
+    evt.keyCode == 68 || // d
+    evt.keyCode == 76 // l
+  ) {
+    downControl_Right();
+  }
   return false;
 }, false);
 document.addEventListener("keyup", function(e) {
   var evt = e || window.event;
-  if(evt.keyCode == 67)
-    cpu.port1 &= 255-1;
-  if(evt.keyCode == 49)
-    cpu.port1 &= 255-4;
-  if(evt.keyCode == 190)
-    cpu.port1 &= 255-0x10;
-  if(evt.keyCode == 90)
-    cpu.port1 &= 255-0x20;
-  if(evt.keyCode == 88)
-    cpu.port1 &= 255-0x40;
+  // if(evt.keyCode == 67)
+  //   cpu.port1 &= 255-1;
+  // if(evt.keyCode == 49)
+  //   cpu.port1 &= 255-4;
+  // if(evt.keyCode == 190)
+  //   cpu.port1 &= 255-0x10;
+  // if(evt.keyCode == 90)
+  //   cpu.port1 &= 255-0x20;
+  // if(evt.keyCode == 88)
+  //   cpu.port1 &= 255-0x40;
+  if(evt.keyCode == 67 || // c
+    evt.keyCode == 192 || // tilde or backtick `
+    evt.keyCode == 81 // q
+  ) {
+    upControl_Coin();
+  }
+  if(evt.keyCode == 49 // 1
+  ) {
+    upControl_1P();
+  }
+  if(evt.keyCode == 50 // 2
+  ) {
+    upControl_2P();
+  }
+  if(evt.keyCode == 190 || // . (period)
+    evt.keyCode == 32 || // space
+    evt.keyCode == 13 || // enter
+    evt.keyCode == 188 || // , (comma)
+    evt.keyCode == 191 || // / (slash)
+    evt.keyCode == 90 || // z
+    evt.keyCode == 88 // x
+  ) {
+    upControl_Fire();
+  }
+  if(evt.keyCode == 37 || // left arrow
+    evt.keyCode == 65 || // a
+    evt.keyCode == 74 // j
+  ) {
+    upControl_Left();
+  }
+  if(evt.keyCode == 39 || // right arrow
+    evt.keyCode == 68 || // d
+    evt.keyCode == 76 // l
+  ) {
+    upControl_Right();
+  }
   return false;
 }, false);
 
