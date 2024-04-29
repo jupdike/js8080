@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
- <title>JavaScript 8080 Emulator</title>
+ <title>Space Invaders</title>
  <style type="text/css">
     :-webkit-full-screen #screen {  
-      width: 100%;  
-      height: 100%;  
+      width: 100%;
+      height: 100%;
     }  
 
-   body{ height:100% }
+   body{ height:100%; background-color: #122B53; }
 
   canvas.fullscreen{
     display:block;
@@ -18,6 +18,14 @@
     
     width:100%;
     height:100%;
+  }
+
+  canvas#screen {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 84vmin;
+    height: 96vmin;
   }
 
  </style>
@@ -198,7 +206,9 @@ function mobile() {
 }
 
 </script>
-<button onclick='si();'>Space Invaders</button>
+
+<body>
+<!-- <button onclick='si();'>Space Invaders</button>
 <button onclick='lr();'>Lunar Rescue</button>
 <button onclick='bb();'>Balloon Bomber</button>
 <a href="http://www.bluishcoder.co.nz/2008/09/javascript-space-invaders-emulator.html">About</a>
@@ -210,15 +220,15 @@ function mobile() {
 <input id="n" type="text" value="1000">
 <button onclick='enableAudio()'>Enable Audio</button>
 <button onclick='fullscreen()'>Fullscreen</button>
-<button onclick='mobile()'>Mobile</button>
+<button onclick='mobile()'>Mobile</button> -->
 <p id="time"></p>
-<table style="font-family: monospace">
+<table style="display: none; font-family: monospace">
 <tr><th>af<th>bc<th>de<th>hl<th>pc<th>sp<th>flags<th>cycles
 <tr><td><div id="af"><td><div id="bc"><td><div id="de"><td><div id="hl"><td><div id="pc"><td><div id="sp"><td><div id="flags"><td><div id="cycles">
 </table>
-<pre id="disassemble">
+<pre style="display: none" id="disassemble">
 </pre>
-<table style="float:right" border='1'>
+<table style="display: none; float:right" border='1'>
 <tr><th>key<th>action</tr>
 <tr><td>z<td>left</tr>
 <tr><td>x<td>right</tr>
@@ -227,12 +237,12 @@ function mobile() {
 <tr><td>1<td>1 player</tr>
 </table>
 <canvas 
-style="background-color: black"
+style="background-color: black;"
 id="screen" 
 width="448" 
 height="512">
 </canvas>
-<p id="status">
+<p id="status" style="display: none"></p>
 <script type="text/javascript">
 function pixelSet(video, y, x, r, g, b) {
   const w = 224;
@@ -556,7 +566,6 @@ class Sound {
             request.responseType = 'arraybuffer';
 
             // Decode asynchronously:
-
             request.onload = () => {
                 acontext.decodeAudioData(request.response, (buffer) => {
                     if (!buffer) {
