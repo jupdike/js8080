@@ -172,23 +172,25 @@
     }
     return false;
   }, false);
-  
-  
+
   let sounds = {};
   function sounder() {
+    console.log('sounder()');
     'basehit invhit shot ufo ufohit walk1 walk2 walk3 walk4'
     .split(' ').forEach(sound => {
       console.log('loading sound for ' + sound + '...');
       sounds[sound] = new Sound(`./sound/${sound}.mp3`);
-      sounds[sound].load();
+      sounds[sound].load().then(() => {
+        console.log('finished loading sound for ' + sound);
+      });
     });
   }
   sounder();
-  
+
   anim();
-  
+
 </script>
-  
+
 <script>
 document.getElementsByTagName('body')[0].addEventListener("contextmenu", (event) => {
   console.log('prevented default?');
