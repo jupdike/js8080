@@ -106,11 +106,18 @@ div#control-beside-left, div#control-beside-right {
   }
 }
 @media (min-aspect-ratio: 5/4) {
-  body { background-color: pink; }
+  /* body { background-color: pink; } */
   div#controls-below { display: none }
-  /* div#control-beside-left, div#control-beside-right {
-    display: block
-  } */
+  #row-version {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  div#control-beside-left, div#control-beside-right {
+    display: inline-block;
+    width: calc(0.5 * (100vw - (90vh * 224 / 256)));
+    height: calc( 1.25 * 0.5 * (100vw - (90vh * 224 / 256)) );
+  }
   canvas#screen {
     width: calc(90vh * 224 / 256);
     height: calc(90vh);
