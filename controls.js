@@ -16,10 +16,18 @@ class Controls {
         this.controls = [];
         //this.activeTouches = [];
 
+        // this.el.addEventListener('pointerdown', (e) => {
+        // });
+        // this.el.addEventListener('pointerup', (e) => {
+        // });
+        // this.el.addEventListener('pointermove', (e) => {
+        // });
+
         this.el.addEventListener('touchstart', (e) => {
             //console.log('touchstart');
             e.preventDefault();
-            e.returnValue = false; // this is marked deprecated by on Mobile Safari cannout turn off magifier selection thing (easy repro of bug is to tap double-tap and hold)
+            e.returnValue = false; // this is marked deprecated on Mobile Safari -- but! cannout turn off magifier selection thing (easy repro of bug is to tap double-tap and hold)
+            // with this line commented out, the magifier selection stays broken
             for(let i = 0; i < e.changedTouches.length; i++) {
                 this._processTouchStart(e.changedTouches.item(i));
             }

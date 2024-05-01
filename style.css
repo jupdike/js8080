@@ -55,10 +55,18 @@ div#control-beside-left, div#control-beside-right {
   canvas#screen {
     width: 100vmin;
     height: 114vmin;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;  
   }
   div#control-below-left, div#control-below-right {
     width: 50vmin;
     height: 62.5vmin; 
+  }
+  div#control-below-left {
+    border-bottom-left-radius: 1rem;
+  }
+  div#control-below-right {
+    border-bottom-right-radius: 1rem;
   }
 }
 /* 550 px wide
@@ -77,6 +85,8 @@ div#control-beside-left, div#control-beside-right {
   canvas#screen {
       width: calc(95vmax * 9 / 16);
       height: calc(95vmax * 36 / 56);
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;  
   }
   div#controls-below {
       width: calc(95vmax * 9 / 16);
@@ -85,6 +95,12 @@ div#control-beside-left, div#control-beside-right {
   div#control-below-left, div#control-below-right {
       width: calc(95vmax * 9 / 16 * 0.5);
       height: calc(95vmax * 20 / 56);
+  }
+  div#control-below-left {
+    border-bottom-left-radius: 1rem;
+  }
+  div#control-below-right {
+    border-bottom-right-radius: 1rem;
   }
 }
 @media (min-aspect-ratio: 1) and (max-aspect-ratio: 5/4) {
@@ -95,6 +111,8 @@ div#control-beside-left, div#control-beside-right {
   canvas#screen {
     width: calc(95vmin * 9 / 16);
     height: calc(95vmin * 36 / 56);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
   }
   div#controls-below {
       width: calc(95vmin * 9 / 16);
@@ -103,6 +121,12 @@ div#control-beside-left, div#control-beside-right {
   div#control-below-left, div#control-below-right {
       width: calc(95vmin * 9 / 16 * 0.5);
       height: calc(95vmin * 20 / 56);
+  }
+  div#control-below-left {
+    border-bottom-left-radius: 1rem;
+  }
+  div#control-below-right {
+    border-bottom-right-radius: 1rem;
   }
 }
 @media (min-aspect-ratio: 5/4) {
@@ -118,9 +142,18 @@ div#control-beside-left, div#control-beside-right {
     width: calc(0.5 * (100vw - (90vh * 224 / 256)));
     height: calc( 1.25 * 0.5 * (100vw - (90vh * 224 / 256)) );
   }
+  div#control-beside-left {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+  div#control-beside-right {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
   canvas#screen {
     width: calc(90vh * 224 / 256);
     height: calc(90vh);
+    border-radius: 1rem;
   }
 
 }
