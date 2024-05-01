@@ -1,0 +1,119 @@
+:-webkit-full-screen #screen {  
+    width: 100%;
+    height: 100%;
+  }  
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #122B53;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-touch-callout: none;     /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;       /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+/* canvas.fullscreen{
+  display:block;
+
+  position:absolute;
+  top:0;
+  left:0;
+  
+  width:100%;
+  height:100%;
+} */
+
+canvas#screen {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* works, but we don't need it */
+body, html {
+  position: fixed;
+}
+
+div#controls-below {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vw;
+  height: 62.5vmin;
+}
+
+div#control-beside-left, div#control-beside-right {
+  display: none;
+}
+
+@media (max-aspect-ratio: 5/9) {
+  body {
+    /* background-color: orange; */
+  }
+  canvas#screen {
+    width: 100vmin;
+    height: 114vmin;
+  }
+  div#control-below-left, div#control-below-right {
+    width: 50vmin;
+    height: 62.5vmin; 
+  }
+}
+/* 550 px wide
+ height is: 629+344 = 973
+ 1.777 = 16/9
+    344/973 = 0.353
+    629/973 = 0.647
+    or 20 : 36
+       20/56 = 0.357
+       36/56 = 0.643
+*/
+@media (min-aspect-ratio: 5/9) and (max-aspect-ratio: 1) {
+  body {
+    width: 100vw;
+  }
+  canvas#screen {
+      width: calc(95vmax * 9 / 16);
+      height: calc(95vmax * 36 / 56);
+  }
+  div#controls-below {
+      width: calc(95vmax * 9 / 16);
+      height: calc(95vmax * 20 / 56);
+  }
+  div#control-below-left, div#control-below-right {
+      width: calc(95vmax * 9 / 16 * 0.5);
+      height: calc(95vmax * 20 / 56);
+  }
+}
+@media (min-aspect-ratio: 1) and (max-aspect-ratio: 5/4) {
+  body {
+    /* background-color: red; */
+    width: 100vw;
+  }
+  canvas#screen {
+    width: calc(95vmin * 9 / 16);
+    height: calc(95vmin * 36 / 56);
+  }
+  div#controls-below {
+      width: calc(95vmin * 9 / 16);
+      height: calc(95vmin * 20 / 56);
+  }
+  div#control-below-left, div#control-below-right {
+      width: calc(95vmin * 9 / 16 * 0.5);
+      height: calc(95vmin * 20 / 56);
+  }
+}
+@media (min-aspect-ratio: 5/4) {
+  body { background-color: pink; }
+  div#controls-below { display: none }
+  /* div#control-beside-left, div#control-beside-right {
+    display: block
+  } */
+  canvas#screen {
+    width: calc(90vh * 224 / 256);
+    height: calc(90vh);
+  }
+
+}
