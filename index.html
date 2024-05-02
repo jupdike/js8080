@@ -18,7 +18,7 @@
  <script type="text/javascript" src="invadersf.js"></script>
  <script type="text/javascript" src="invadersg.js"></script>
  <script type="text/javascript" src="invadersh.js"></script>
- <script type="text/javascript" src="lrescue1.js"></script>
+ <!-- <script type="text/javascript" src="lrescue1.js"></script>
  <script type="text/javascript" src="lrescue2.js"></script>
  <script type="text/javascript" src="lrescue3.js"></script>
  <script type="text/javascript" src="lrescue4.js"></script>
@@ -28,7 +28,7 @@
  <script type="text/javascript" src="tn02.js"></script>
  <script type="text/javascript" src="tn03.js"></script>
  <script type="text/javascript" src="tn04.js"></script>
- <script type="text/javascript" src="tn05.js"></script>
+ <script type="text/javascript" src="tn05.js"></script> -->
  <script type="text/javascript" src="acontext.js"></script>
  <script type="text/javascript" src="controls.js"></script>
  <script type="text/javascript" src="si.js"></script>
@@ -65,15 +65,15 @@
 </table>
 
 <div id="row-version">
-  <div id="control-beside-left" style="background-image: url('majesty-controls-left.png'); background-size: contain; margin: 0; padding: 0"></div><!--no whitespace --><canvas 
+  <div id="control-beside-left" style="background-image: url('majesty-controls-left.png'); background-size: contain; ; margin: 0; padding: 0"></div><!--no whitespace --><canvas 
       style="background-color: black;"
       id="screen" 
       width="448" 
-      height="512"></canvas><!-- no whitespace --><div id="control-beside-right" style="background-image: url('majesty-controls-right.png'); background-size: contain; margin: 0; padding: 0"></div>
+      height="512"></canvas><!-- no whitespace --><div id="control-beside-right" style="background-image: url('majesty-controls-right.png'); background-size: contain; background-repeat: no-repeat; margin: 0; padding: 0"></div>
 </div>
 
 <div id="controls-below" style="display: block; margin-left: auto; margin-right: auto;">
-  <div id="control-below-left" style="display: inline-block; background-image: url('majesty-controls-left.png'); background-size: contain; margin: 0; padding: 0"></div><!--no whitespace --><div id="control-below-right" style="display: inline-block; background-image: url('majesty-controls-right.png'); background-size: contain; margin: 0; padding: 0"></div>
+  <div id="control-below-left" style="display: inline-block; background-image: url('majesty-controls-left.png'); background-size: contain; background-repeat: no-repeat; margin: 0; padding: 0"></div><!--no whitespace --><div id="control-below-right" style="display: inline-block; background-image: url('majesty-controls-right.png'); background-repeat: no-repeat; background-size: contain; margin: 0; padding: 0"></div>
 </div>
 
 <p id="status" style="display: none"></p>
@@ -179,7 +179,7 @@
     'basehit invhit shot ufo ufohit walk1 walk2 walk3 walk4'
     .split(' ').forEach(sound => {
       console.log('loading sound for ' + sound + '...');
-      sounds[sound] = new Sound(`./sound/${sound}.mp3`);
+      sounds[sound] = new Sound(`./si-sound/${sound}.mp3`);
       sounds[sound].load().then(() => {
         console.log('finished loading sound for ' + sound);
       });
@@ -209,25 +209,51 @@ document.getElementsByTagName('body')[0].addEventListener("contextmenu", (event)
 // addTouchEventListeners('btn-1', downControl_1P, upControl_1P);
 // addTouchEventListeners('btn-f', downControl_Fire, upControl_Fire);
 
+function downControl_Home() {
+  console.log('downControl_home');
+}
+
+function upControl_Home() {
+  console.log('upControl_home');
+  if(window.confirm("Are you sure you want to go back to Home page?")) {
+    window.location.href = '../index.html';
+  }
+}
+
+function downControl_Info() {
+  console.log('downControl_home');
+}
+
+function upControl_Info() {
+  console.log('upControl_home');
+  if(window.confirm("Are you sure you want to navigate to Information page?")) {
+    window.location.href = '../index.html';
+  }
+}
+
 // below controls
 let controlsLeft = new Controls('control-below-left');
-controlsLeft.addControl('C', 0.20, 0.15, 0.2, downControl_Coin, upControl_Coin);
-controlsLeft.addControl('L', 0.15, 0.50, 0.24, downControl_Left, upControl_Left);
-controlsLeft.addControl('R', 0.85, 0.50, 0.24, downControl_Right, upControl_Right);
+controlsLeft.addControl('C', 0.85, 0.15, 0.2, downControl_Coin, upControl_Coin);
+controlsLeft.addControl('L', 0.18, 0.60, 0.26, downControl_Left, upControl_Left);
+controlsLeft.addControl('R', 0.82, 0.60, 0.26, downControl_Right, upControl_Right);
+controlsLeft.addControl('H', 0.1, 0.1, 0.1, downControl_Home, upControl_Home);
 let controlsRight = new Controls('control-below-right');
-controlsRight.addControl('1', 0.85, 0.1, 0.2, downControl_1P, upControl_1P);
+controlsRight.addControl('1', 0.2, 0.15, 0.2, downControl_1P, upControl_1P);
+// right now all buttons are wired up as one big button since game only has one Fire button
 controlsRight.addControl('F', 0.50, 0.5, 0.4, downControl_Fire, upControl_Fire);
+controlsRight.addControl('H', 0.9, 0.1, 0.1, downControl_Info, upControl_Info);
 
 // beside controls
 let controlsLeft2 = new Controls('control-beside-left');
-controlsLeft2.addControl('C', 0.20, 0.15, 0.2, downControl_Coin, upControl_Coin);
-controlsLeft2.addControl('L', 0.15, 0.50, 0.24, downControl_Left, upControl_Left);
-controlsLeft2.addControl('R', 0.85, 0.50, 0.24, downControl_Right, upControl_Right);
+controlsLeft2.addControl('C', 0.85, 0.15, 0.2, downControl_Coin, upControl_Coin);
+controlsLeft2.addControl('L', 0.18, 0.60, 0.26, downControl_Left, upControl_Left);
+controlsLeft2.addControl('R', 0.82, 0.60, 0.26, downControl_Right, upControl_Right);
+controlsLeft2.addControl('H', 0.1, 0.1, 0.1, downControl_Home, upControl_Home);
 let controlsRight2 = new Controls('control-beside-right');
-controlsRight2.addControl('1', 0.85, 0.1, 0.2, downControl_1P, upControl_1P);
-controlsRight2.addControl('F', 0.50, 0.5, 0.4, downControl_Fire, upControl_Fire);
-
-
+controlsRight2.addControl('1', 0.2, 0.15, 0.2, downControl_1P, upControl_1P);
+// right now all buttons are wired up as one big button since game only has one Fire button
+controlsRight2.addControl('F', 0.50, 0.6, 0.45, downControl_Fire, upControl_Fire);
+controlsRight2.addControl('H', 0.9, 0.1, 0.1, downControl_Info, upControl_Info);
 
 </script>
 
