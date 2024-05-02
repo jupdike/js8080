@@ -54,12 +54,12 @@ class Sound {
     }
 
     play(volume = 1, time = 0) {
-        console.log('play 1', this.url);
+        // console.log('play 1', this.url);
         if (!this.buffer) return;
 
         acontext.resume();
 
-        console.log('play 2', this.url);
+        // console.log('play 2', this.url);
 
         // Create a new sound source and assign it the loaded sound's buffer:
         const source = acontext.createBufferSource();
@@ -83,7 +83,7 @@ class Sound {
         // Start playing at the desired time:
         source.start(time);
 
-        console.log('play 3', this.url);
+        // console.log('play 3', this.url);
     }
 
     stop() {
