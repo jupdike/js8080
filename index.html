@@ -231,29 +231,21 @@ function upControl_Info() {
   }
 }
 
-// below controls
-let controlsLeft = new Controls('control-below-left');
-controlsLeft.addControl('C', 0.85, 0.15, 0.2, downControl_Coin, upControl_Coin);
-controlsLeft.addControl('L', 0.18, 0.60, 0.26, downControl_Left, upControl_Left);
-controlsLeft.addControl('R', 0.82, 0.60, 0.26, downControl_Right, upControl_Right);
-controlsLeft.addControl('H', 0.1, 0.1, 0.1, downControl_Home, upControl_Home);
-let controlsRight = new Controls('control-below-right');
-controlsRight.addControl('1', 0.2, 0.15, 0.2, downControl_1P, upControl_1P);
-// right now all buttons are wired up as one big button since game only has one Fire button
-controlsRight.addControl('F', 0.50, 0.5, 0.4, downControl_Fire, upControl_Fire);
-controlsRight.addControl('H', 0.9, 0.1, 0.1, downControl_Info, upControl_Info);
-
-// beside controls
-let controlsLeft2 = new Controls('control-beside-left');
-controlsLeft2.addControl('C', 0.85, 0.15, 0.2, downControl_Coin, upControl_Coin);
-controlsLeft2.addControl('L', 0.18, 0.60, 0.26, downControl_Left, upControl_Left);
-controlsLeft2.addControl('R', 0.82, 0.60, 0.26, downControl_Right, upControl_Right);
-controlsLeft2.addControl('H', 0.1, 0.1, 0.1, downControl_Home, upControl_Home);
-let controlsRight2 = new Controls('control-beside-right');
-controlsRight2.addControl('1', 0.2, 0.15, 0.2, downControl_1P, upControl_1P);
-// right now all buttons are wired up as one big button since game only has one Fire button
-controlsRight2.addControl('F', 0.50, 0.6, 0.45, downControl_Fire, upControl_Fire);
-controlsRight2.addControl('H', 0.9, 0.1, 0.1, downControl_Info, upControl_Info);
+// CSS moves the controls around by hiding and showing two sets, which means two sets of handlers
+[new Controls('control-below-left'),
+ new Controls('control-beside-left')].forEach(controls => {
+  controls.addControl('C', 0.85, 0.15, 0.2, downControl_Coin, upControl_Coin);
+  controls.addControl('L', 0.18, 0.60, 0.26, downControl_Left, upControl_Left);
+  controls.addControl('R', 0.82, 0.60, 0.26, downControl_Right, upControl_Right);
+  controls.addControl('H', 0.1, 0.1, 0.1, downControl_Home, upControl_Home);
+});
+[new Controls('control-below-right'),
+ new Controls('control-beside-right')].forEach(controls => {
+  controls.addControl('1', 0.2, 0.15, 0.2, downControl_1P, upControl_1P);
+  // right now all buttons are wired up as one big button since game only has one Fire button
+  controls.addControl('F', 0.50, 0.5, 0.4, downControl_Fire, upControl_Fire);
+  controls.addControl('H', 0.9, 0.1, 0.1, downControl_Info, upControl_Info);
+});
 
 </script>
 
