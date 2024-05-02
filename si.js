@@ -220,8 +220,8 @@ if (addr >= 0x2400) {
 }
 }
 function sound(id) {
-    console.log("sound()", id);
-    console.log(sounds);
+    // console.log("sound()", id);
+    // console.log(sounds);
 switch(id) {
 case 2:       
   sounds.shot.play();
